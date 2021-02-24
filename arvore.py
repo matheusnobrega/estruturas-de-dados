@@ -14,8 +14,8 @@ class ArvoreBinaria:
     def insere_raiz(self, valor):
         no = No(valor)
         self.raiz = no
-        print(self.raiz.valor)
-        print("passei por aqui")
+        #print(self.raiz.valor)
+        #print("passei por aqui")
 
     def insere_arvore(self, valor):
         if self.raiz == None:
@@ -29,7 +29,7 @@ class ArvoreBinaria:
                 if atual.valor == valor:
                     return False
 
-                if atual.valor > valor:
+                if valor > atual.valor:
                     atual = atual.no_dir
                 else:
                     atual = atual.no_esq
@@ -43,20 +43,36 @@ class ArvoreBinaria:
                 print("no esquerdo")
                 print(anterior.no_esq.valor)
 
-    def imprime(self):
+    def busca_arvore(self, valor):
+        if self.raiz == None:
+            return "arvore esta vazia"
+
         atual = self.raiz
 
         while atual != None:
-            print(atual.no_dir)
-            print(atual.no_esq)
-            atual = atual.no_dir
+        #    print(atual.valor)
+            if atual.valor == valor:
+                return "achado o valor"
+
+            if valor > atual.valor:
+                atual = atual.no_dir
+            else:
+                atual = atual.no_esq
+
+        return "Item nao esta inserido na arvore"
 
 def main():
     arvore = ArvoreBinaria()
 
-    arvore.insere_arvore(5)
     arvore.insere_arvore(20)
     arvore.insere_arvore(21)
+    arvore.insere_arvore(22)
+    arvore.insere_arvore(23)
+    arvore.insere_arvore(17)
+    arvore.insere_arvore(18)
+
+    x = arvore.busca_arvore(7)
+    print(x)
 
 
 main()
